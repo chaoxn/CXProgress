@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC014D1F1C119A7B00B8E125 /* CXProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = EC014D1E1C119A7B00B8E125 /* CXProgress.m */; };
 		ECCE34D31C0E977C00743B09 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCE34D21C0E977C00743B09 /* main.m */; };
 		ECCE34D61C0E977C00743B09 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCE34D51C0E977C00743B09 /* AppDelegate.m */; };
-		ECCE34D91C0E977C00743B09 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCE34D81C0E977C00743B09 /* ViewController.m */; };
 		ECCE34DC1C0E977C00743B09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECCE34DA1C0E977C00743B09 /* Main.storyboard */; };
 		ECCE34DE1C0E977C00743B09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECCE34DD1C0E977C00743B09 /* Assets.xcassets */; };
 		ECCE34E11C0E977C00743B09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECCE34DF1C0E977C00743B09 /* LaunchScreen.storyboard */; };
 		ECCE34EC1C0E977C00743B09 /* CXProgressViewDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCE34EB1C0E977C00743B09 /* CXProgressViewDemoTests.m */; };
 		ECCE34F71C0E977C00743B09 /* CXProgressViewDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCE34F61C0E977C00743B09 /* CXProgressViewDemoUITests.m */; };
+		ECF6E67E1C1139AA004FF130 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF6E67C1C1139AA004FF130 /* ViewController.m */; };
+		ECF6E67F1C1139AA004FF130 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECF6E67D1C1139AA004FF130 /* ViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,12 +37,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC014D1D1C119A7B00B8E125 /* CXProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXProgress.h; sourceTree = "<group>"; };
+		EC014D1E1C119A7B00B8E125 /* CXProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXProgress.m; sourceTree = "<group>"; };
 		ECCE34CE1C0E977C00743B09 /* CXProgressViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CXProgressViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECCE34D21C0E977C00743B09 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ECCE34D41C0E977C00743B09 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		ECCE34D51C0E977C00743B09 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		ECCE34D71C0E977C00743B09 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		ECCE34D81C0E977C00743B09 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		ECCE34DB1C0E977C00743B09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ECCE34DD1C0E977C00743B09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECCE34E01C0E977C00743B09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +53,9 @@
 		ECCE34F21C0E977C00743B09 /* CXProgressViewDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CXProgressViewDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECCE34F61C0E977C00743B09 /* CXProgressViewDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CXProgressViewDemoUITests.m; sourceTree = "<group>"; };
 		ECCE34F81C0E977C00743B09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECF6E67B1C1139AA004FF130 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		ECF6E67C1C1139AA004FF130 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		ECF6E67D1C1139AA004FF130 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,9 +83,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC014D1C1C119A7B00B8E125 /* CXProgress */ = {
+			isa = PBXGroup;
+			children = (
+				EC014D1D1C119A7B00B8E125 /* CXProgress.h */,
+				EC014D1E1C119A7B00B8E125 /* CXProgress.m */,
+			);
+			path = CXProgress;
+			sourceTree = "<group>";
+		};
 		ECCE34C51C0E977C00743B09 = {
 			isa = PBXGroup;
 			children = (
+				EC014D1C1C119A7B00B8E125 /* CXProgress */,
 				ECCE34D01C0E977C00743B09 /* CXProgressViewDemo */,
 				ECCE34EA1C0E977C00743B09 /* CXProgressViewDemoTests */,
 				ECCE34F51C0E977C00743B09 /* CXProgressViewDemoUITests */,
@@ -103,8 +118,9 @@
 			children = (
 				ECCE34D41C0E977C00743B09 /* AppDelegate.h */,
 				ECCE34D51C0E977C00743B09 /* AppDelegate.m */,
-				ECCE34D71C0E977C00743B09 /* ViewController.h */,
-				ECCE34D81C0E977C00743B09 /* ViewController.m */,
+				ECF6E67B1C1139AA004FF130 /* ViewController.h */,
+				ECF6E67C1C1139AA004FF130 /* ViewController.m */,
+				ECF6E67D1C1139AA004FF130 /* ViewController.xib */,
 				ECCE34DA1C0E977C00743B09 /* Main.storyboard */,
 				ECCE34DD1C0E977C00743B09 /* Assets.xcassets */,
 				ECCE34DF1C0E977C00743B09 /* LaunchScreen.storyboard */,
@@ -243,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECF6E67F1C1139AA004FF130 /* ViewController.xib in Resources */,
 				ECCE34E11C0E977C00743B09 /* LaunchScreen.storyboard in Resources */,
 				ECCE34DE1C0E977C00743B09 /* Assets.xcassets in Resources */,
 				ECCE34DC1C0E977C00743B09 /* Main.storyboard in Resources */,
@@ -270,8 +287,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECCE34D91C0E977C00743B09 /* ViewController.m in Sources */,
+				ECF6E67E1C1139AA004FF130 /* ViewController.m in Sources */,
 				ECCE34D61C0E977C00743B09 /* AppDelegate.m in Sources */,
+				EC014D1F1C119A7B00B8E125 /* CXProgress.m in Sources */,
 				ECCE34D31C0E977C00743B09 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +430,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CXProgressViewDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = chaox.CXProgressViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -423,6 +442,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CXProgressViewDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = chaox.CXProgressViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -496,6 +516,7 @@
 				ECCE34FD1C0E977C00743B09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ECCE34FE1C0E977C00743B09 /* Build configuration list for PBXNativeTarget "CXProgressViewDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +525,7 @@
 				ECCE35001C0E977C00743B09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ECCE35011C0E977C00743B09 /* Build configuration list for PBXNativeTarget "CXProgressViewDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +534,7 @@
 				ECCE35031C0E977C00743B09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  CXProgress.h
 //  CXProgressViewDemo
 //
 //  Created by fizz on 15/12/4.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface CXProgress : UIView
 
 @end
