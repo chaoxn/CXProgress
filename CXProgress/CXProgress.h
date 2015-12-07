@@ -20,19 +20,25 @@ typedef NS_ENUM(NSUInteger, CXProgressType)
 
 @interface CXProgress : UIView
 
+@property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) UIToolbar *hud;
+@property (nonatomic, assign) CXProgressType cxType;
+@property (nonatomic, strong) UIView *pointMaskView;
+@property (nonatomic, strong) UIView *turnMaskView;
+@property (nonatomic, strong) UIView *catchMaskView;
 /**
  *  显示等待框
  *
  *  @param view 需要加载的视图
  *  @param type 加载视图类型
  */
-+ (void)showProgressIn:(UIView *)view type:(CXProgressType )type;
++ (void)showWithType:(CXProgressType )type;
 
 /**
  *  消除等待框
  *
  *  @param superView 需要消除的等待框
  */
-+ (void)disMissProgress: (UIView *)superView;
++ (void)dismiss;
 
 @end

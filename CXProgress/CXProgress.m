@@ -16,57 +16,70 @@
 @end
 
 @implementation CXProgress
+@synthesize window, hud, cxType,pointMaskView,turnMaskView,catchMaskView;
 
 + (CXProgress *)shareInstance
 {
     static dispatch_once_t once = 0;
     static CXProgress *cxProgress;
     
-    dispatch_once(&once, ^{ cxProgress = [[CXProgress alloc] init]; });
+    dispatch_once(&once, ^{ cxProgress = [[CXProgress alloc]init];});
     
     return cxProgress;
 }
-
-- (instancetype)initWithFrame:(CGRect)frame type:(CXProgressType )type
+ 
+- (id)init
 {
-    if (self = [super initWithFrame:frame]) {
+    if (self = [super initWithFrame:[[UIScreen mainScreen] bounds]]) {
         
-        switch (type) {
-            case CXProgressTypeFullPoint:
-                [self beginPointAnimation:YES];
-                break;
-            case CXProgressTypeFullTurn:
-                [self beiginSimpleAnimation:YES];
-                break;
-            case CXProgressTypeFullCatch:
-                [self beginCatchAnimation:YES];
-                break;
-            case CXProgressTypeBasicCatch:
-                [self beginCatchAnimation:NO];
-                break;
-            case CXProgressTypeBasicPoint:
-                [self beginPointAnimation:NO];
-                break;
-            case CXProgressTypeBasicTurn:
-                [self beiginSimpleAnimation:NO];
-                break;
-            default:
-                break;
+        id<UIApplicationDelegate> delegate = [[UIApplication sharedApplication] delegate];
+        
+        if ([delegate respondsToSelector:@selector(window)])
+            window = [delegate performSelector:@selector(window)];
+        else {
+            window = [[UIApplication sharedApplication] keyWindow];
         }
+    
+        self.alpha = 0;
     }
     return self;
 }
 
+#pragma mark- public method
+
++ (void)dismiss
+{
+    [[self shareInstance] hidden];
+}
+
++ (void)showWithType:(CXProgressType )type
+{
+    [self shareInstance].cxType = type;
+    
+    [[self shareInstance] createHud];
+}
+
+- (CGRect )AnimationViewRect
+{
+    CGRect rect = CGRectZero;
+    
+    rect.size = hud.frame.size;
+    
+    return rect;
+}
+
+#pragma mark- animation method
+
 - (void)beginPointAnimation: (BOOL)isFull
 {
-    UIView  *pointMaskView = ({
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 120, 120)];
-        view.center = CGPointMake(self.center.x, self.center.y);
+    pointMaskView = ({
+        UIView *view = [[UIView alloc]initWithFrame:[self AnimationViewRect]];
+        view.center = isFull ? CGPointMake(hud.center.x, hud.center.y) : CGPointMake(hud.frame.size.width/2 , hud.frame.size.height/2 );
         view;
     });
     
-    [self addSubview:pointMaskView];
-    
+    [hud addSubview:pointMaskView];
+
     CAReplicatorLayer *replicatorLayer = [CAReplicatorLayer layer];
     replicatorLayer.bounds = CGRectMake(0, 0, pointMaskView.frame.size.width, pointMaskView.frame.size.height);
     replicatorLayer.position = CGPointMake(pointMaskView.frame.size.width/2, pointMaskView.frame.size.height/2);
@@ -77,7 +90,7 @@
     circle.bounds = CGRectMake(0, 0, 8, 8);
     circle.position = CGPointMake(pointMaskView.frame.size.width/2, pointMaskView.frame.size.height/2 - 25);
     circle.cornerRadius = 4;
-    circle.backgroundColor = isFull ?   [UIColor blackColor].CGColor : [UIColor whiteColor].CGColor;
+    circle.backgroundColor = isFull ?   [UIColor blackColor].CGColor : [UIColor blackColor].CGColor;
     
     [replicatorLayer addSublayer:circle];
     
@@ -99,34 +112,33 @@
 
 - (void)beiginSimpleAnimation:(BOOL)isFull
 {
-    
-    UIView *turnMaskView = ({
+    turnMaskView = ({
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 120, 120)];
         view.backgroundColor = [UIColor clearColor];
-        view.center = CGPointMake(self.center.x, self.center.y);
+        view.center = isFull ? CGPointMake(hud.center.x, hud.center.y) : CGPointMake(hud.frame.size.width/2 , hud.frame.size.height/2 );
         view;
     });
     
-    [self addSubview:turnMaskView];
+    [hud addSubview:turnMaskView];
     
     CABasicAnimation *rotate = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-    rotate.duration = 1 + PERFECT;
+    rotate.duration = 1.2;
     rotate.fromValue = 0;
     rotate.toValue =[NSNumber numberWithFloat:2 * M_PI];
     rotate.repeatCount = HUGE;
     [turnMaskView.layer addAnimation:rotate forKey:nil];
     
     CAShapeLayer *ovalShapeLayer = [CAShapeLayer layer];
-    ovalShapeLayer.strokeColor = isFull ? [UIColor darkGrayColor].CGColor:[UIColor whiteColor].CGColor;
+    ovalShapeLayer.strokeColor = isFull ? [UIColor darkGrayColor].CGColor:[UIColor blackColor].CGColor;
     ovalShapeLayer.fillColor = [UIColor clearColor].CGColor;
-    ovalShapeLayer.lineWidth = 2;
+    ovalShapeLayer.lineWidth = 1.5;
     
     CGFloat ovalRadius = isFull ? turnMaskView.frame.size.height/2 * 0.55 : turnMaskView.frame.size.height/2 * (1-PERFECT);
     
     UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(turnMaskView.frame.size.width/2-ovalRadius, turnMaskView.frame.size.width/2-ovalRadius, ovalRadius*2, ovalRadius*2)];
     
     ovalShapeLayer.path =path.CGPath;
-    ovalShapeLayer.strokeEnd = 0.7;
+    ovalShapeLayer.strokeEnd = 0.8;
     ovalShapeLayer.lineCap = kCALineCapRound; // 两头圆
     
     [turnMaskView.layer addSublayer:ovalShapeLayer];
@@ -134,18 +146,18 @@
 
 - (void)beginCatchAnimation:(BOOL)isFull
 {
-    UIView *catchMaskView = ({
+    catchMaskView = ({
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 120, 120)];
         view.backgroundColor = [UIColor clearColor];
-        view.center = CGPointMake(self.center.x, self.center.y);
+        view.center = isFull ? CGPointMake(hud.center.x, hud.center.y) : CGPointMake(hud.frame.size.width/2 , hud.frame.size.height/2 );
         view;
     });
     
-    [self addSubview:catchMaskView];
+    [hud addSubview:catchMaskView];
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-    shapeLayer.lineWidth = 2;
-    shapeLayer.strokeColor = isFull ? [UIColor darkGrayColor].CGColor:[UIColor whiteColor].CGColor;
+    shapeLayer.lineWidth = 1.5;
+    shapeLayer.strokeColor = isFull ? [UIColor darkGrayColor].CGColor:[UIColor darkGrayColor].CGColor;
     shapeLayer.fillColor = [UIColor clearColor].CGColor;
     
     CGFloat radius = isFull ? catchMaskView.frame.size.height/2 * 0.55 : catchMaskView.frame.size.height/2 * (1-PERFECT);
@@ -164,49 +176,102 @@
     endAnimation.toValue = [NSNumber numberWithFloat:1.0];
     
     CAAnimationGroup *groupAnimation = [CAAnimationGroup animation];
-    groupAnimation.duration = 1 + PERFECT;
+    groupAnimation.duration = 1.2;
     groupAnimation.repeatCount = HUGE;
     groupAnimation.animations = @[startAnimation, endAnimation];
     
     [shapeLayer addAnimation:groupAnimation forKey:nil];
 }
 
-+ (void)showProgressIn:(UIView *)view type:(CXProgressType )type
+#pragma mark- private method
+
+- (void)createHud
 {
-    CXProgress *cxPV;
+    if (hud == nil) {
+        hud = [[UIToolbar alloc] initWithFrame:CGRectZero];
+        hud.translucent = YES;
+        hud.layer.cornerRadius = 10;
+        hud.layer.masksToBounds = YES;
+    }
     
-    if (type < BASICTYPE) {
-        
-        cxPV  = [[CXProgress alloc]initWithFrame:view.bounds type:type];
-        cxPV.backgroundColor = [UIColor whiteColor];
+    if (cxType < BASICTYPE) {
+
+        hud.frame = window.frame;
+        hud.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.1];
     }else{
         
-        cxPV = [[CXProgress alloc]initWithFrame:CGRectMake(0, 0, 130, 100) type:type];
-        cxPV.layer.cornerRadius = 10;
-        cxPV.backgroundColor = [UIColor blackColor];
-        cxPV.alpha = PERFECT;
+        hud.frame = CGRectMake(0, 0, 150, 100);
     }
     
-    cxPV.center = CGPointMake(view.frame.size.width/2, view.frame.size.height/2);
+    hud.center = CGPointMake(window.frame.size.width/2, window.frame.size.height/2);
+    hud.alpha = 0;
+    hud.transform = CGAffineTransformScale(hud.transform, 1+PERFECT, 1+PERFECT);
     
-    [view addSubview:cxPV];
+    [UIView animateWithDuration:1-PERFECT delay:0 options:1 animations:^{
+        hud.transform = CGAffineTransformScale(hud.transform, 1/1.618, 1/1.618);
+        hud.alpha = 1;
+    } completion:^(BOOL finished){
+         hud.transform = CGAffineTransformScale(hud.transform, 1, 1);
+    }];
+
+    if (hud.superview == nil) {
+        
+        [window addSubview:hud];
+    }
+    
+    [self judgeType];
+ }
+
+- (void)judgeType
+{    
+    if (pointMaskView) {
+        [pointMaskView removeFromSuperview];
+    }
+    if (turnMaskView) {
+        [turnMaskView removeFromSuperview];
+    }
+    if (catchMaskView) {
+        [catchMaskView removeFromSuperview];
+    }
+    
+    switch (cxType) {
+        case CXProgressTypeFullPoint:
+            [self beginPointAnimation:YES];
+            break;
+        case CXProgressTypeFullTurn:
+            [self beiginSimpleAnimation:YES];
+            break;
+        case CXProgressTypeFullCatch:
+            [self beginCatchAnimation:YES];
+            break;
+        case CXProgressTypeBasicCatch:
+            [self beginCatchAnimation:NO];
+            break;
+        case CXProgressTypeBasicPoint:
+            [self beginPointAnimation:NO];
+            break;
+        case CXProgressTypeBasicTurn:
+            [self beiginSimpleAnimation:NO];
+            break;
+        default:
+            break;
+    }
 }
 
-+ (void)disMissProgress:(UIView *)superView
+- (void)hidden
 {
-    for (UIView *view in superView.subviews) {
+    [UIView animateWithDuration:0.2 delay:0 options:1 animations:^{
+        hud.transform = CGAffineTransformScale(hud.transform, 0.7, 0.7);
+        hud.alpha = 0;
+    }completion:^(BOOL finished) {
         
-        if ([view isKindOfClass:[self class]]) {
-            
-            [UIView animateWithDuration:1 animations:^{
-                
-                view.alpha = 0;
-            } completion:^(BOOL finished) {
-                
-                [view removeFromSuperview];
-            }];
-        }
-    }
+        [self removeFromSuperview];
+        [hud removeFromSuperview];
+        hud =nil;
+        [pointMaskView removeFromSuperview];
+        [turnMaskView removeFromSuperview];
+        [catchMaskView removeFromSuperview];
+    }];
 }
 
 @end

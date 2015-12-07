@@ -23,63 +23,55 @@
 
 - (IBAction)pointAction:(id)sender {
     
-    [CXProgress showProgressIn:self.view type:CXProgressTypeFullPoint];
+    [CXProgress showWithType:CXProgressTypeFullPoint];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [CXProgress disMissProgress:self.view];
+        [CXProgress dismiss];
     });
 }
 
 - (IBAction)turnAction:(id)sender {
     
-    [CXProgress showProgressIn:self.view type:CXProgressTypeFullTurn];
+    [CXProgress showWithType:CXProgressTypeFullTurn];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [CXProgress disMissProgress:self.view];
+        [CXProgress dismiss];
     });
 }
 
 - (IBAction)catchAction:(id)sender {
     
-    [CXProgress showProgressIn:self.view type:CXProgressTypeFullCatch];
+    [CXProgress showWithType:CXProgressTypeFullCatch];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [CXProgress disMissProgress:self.view];
+        [CXProgress dismiss];
     });
 }
 
 
 - (IBAction)basicPoint:(id)sender {
     
-    [CXProgress showProgressIn:self.view type:CXProgressTypeBasicPoint];
+    [CXProgress showWithType:CXProgressTypeBasicPoint];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        [CXProgress disMissProgress:self.view];
-    });
 }
 
 - (IBAction)basicTurn:(id)sender {
     
-    [CXProgress showProgressIn:self.view type:CXProgressTypeBasicTurn];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        [CXProgress disMissProgress:self.view];
-    });
+    [CXProgress showWithType:CXProgressTypeBasicTurn];
+
 }
 
 - (IBAction)basicCatch:(id)sender {
     
-    [CXProgress showProgressIn:self.view type:CXProgressTypeBasicCatch];
+    [CXProgress showWithType:CXProgressTypeBasicCatch];
+}
+
+- (IBAction)disMiss:(id)sender {
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        [CXProgress disMissProgress:self.view];
-    });
+    [CXProgress dismiss];
 }
 
 - (void)didReceiveMemoryWarning

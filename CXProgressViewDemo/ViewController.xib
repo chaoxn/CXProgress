@@ -121,17 +121,28 @@
                         <action selector="pointAction:" destination="-1" eventType="touchUpInside" id="2R1-rk-wlS"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRA-1c-Tqh">
+                    <rect key="frame" x="80" y="519" width="161" height="20"/>
+                    <animations/>
+                    <state key="normal" title="dissMiss"/>
+                    <connections>
+                        <action selector="disMiss:" destination="-1" eventType="touchUpInside" id="gsv-Hu-6yt"/>
+                    </connections>
+                </button>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="LJj-US-YIn" firstAttribute="centerX" secondItem="cdu-hY-Fup" secondAttribute="centerX" id="5JF-uY-CX6"/>
                 <constraint firstAttribute="trailing" secondItem="e5g-hC-bCv" secondAttribute="trailing" id="7Aq-au-r1z"/>
+                <constraint firstItem="XRA-1c-Tqh" firstAttribute="height" secondItem="PgE-r4-TGv" secondAttribute="height" id="8d4-Tu-yIJ"/>
                 <constraint firstItem="cdu-hY-Fup" firstAttribute="top" secondItem="Rbh-C8-J6x" secondAttribute="bottom" constant="30" id="AkV-Aa-hJG"/>
+                <constraint firstItem="XRA-1c-Tqh" firstAttribute="width" secondItem="PgE-r4-TGv" secondAttribute="width" id="FDp-Cb-IHU"/>
                 <constraint firstItem="Rbh-C8-J6x" firstAttribute="top" secondItem="e5g-hC-bCv" secondAttribute="bottom" constant="30" id="FW8-g3-x0n"/>
                 <constraint firstItem="cdu-hY-Fup" firstAttribute="centerX" secondItem="Rbh-C8-J6x" secondAttribute="centerX" id="Fta-sK-Zxl"/>
                 <constraint firstItem="JxU-kb-aww" firstAttribute="centerX" secondItem="gcR-os-yIM" secondAttribute="centerX" id="K3p-Zs-CI9"/>
                 <constraint firstItem="LJj-US-YIn" firstAttribute="top" secondItem="cdu-hY-Fup" secondAttribute="bottom" constant="30" id="LQ4-BK-7mk"/>
+                <constraint firstItem="XRA-1c-Tqh" firstAttribute="top" secondItem="PgE-r4-TGv" secondAttribute="bottom" constant="68" id="NTq-8q-IY3"/>
                 <constraint firstItem="PgE-r4-TGv" firstAttribute="centerX" secondItem="tiI-uh-laq" secondAttribute="centerX" id="OrP-e0-9dL"/>
                 <constraint firstItem="gcR-os-yIM" firstAttribute="height" secondItem="e5g-hC-bCv" secondAttribute="height" id="PUb-Oq-oHd"/>
                 <constraint firstItem="e5g-hC-bCv" firstAttribute="centerX" secondItem="Rbh-C8-J6x" secondAttribute="centerX" id="Pfh-al-Reh"/>
@@ -140,6 +151,7 @@
                 <constraint firstItem="tiI-uh-laq" firstAttribute="centerX" secondItem="JxU-kb-aww" secondAttribute="centerX" id="aRg-Sk-zci"/>
                 <constraint firstItem="gcR-os-yIM" firstAttribute="centerX" secondItem="LJj-US-YIn" secondAttribute="centerX" id="bBo-5j-Cw5"/>
                 <constraint firstItem="gcR-os-yIM" firstAttribute="height" secondItem="e5g-hC-bCv" secondAttribute="height" id="bsd-xu-kzI"/>
+                <constraint firstItem="XRA-1c-Tqh" firstAttribute="centerX" secondItem="PgE-r4-TGv" secondAttribute="centerX" id="dab-1V-jhU"/>
                 <constraint firstItem="gcR-os-yIM" firstAttribute="height" secondItem="e5g-hC-bCv" secondAttribute="height" id="ds2-8Z-3MP"/>
                 <constraint firstItem="e5g-hC-bCv" firstAttribute="width" secondItem="Rbh-C8-J6x" secondAttribute="width" id="mXe-zS-iNQ"/>
                 <constraint firstItem="e5g-hC-bCv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="n9P-jf-ZpA"/>
